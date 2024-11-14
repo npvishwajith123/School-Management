@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "d8b80bcf-42d1-4dd6-8573-4c828590190f",
+		"name": "School Management - Spring Boot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22928894"
+	},
+	"item": [
+		{
+			"name": "Public - Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"np2\",\r\n    \"password\":\"test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/public/login",
+					"path": [
+						"public",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticated - Get Faculty Details",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{FACULTY_JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "/faculty/3",
+					"path": [
+						"faculty",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticated - Get Student Fee Status",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{FACULTY_JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "/students/2/fees",
+					"path": [
+						"students",
+						"2",
+						"fees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticated - Get Admins contact",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{FACULTY_JWT}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "JWT",
+						"value": "{{ADMIN_JWT}}",
+						"type": "text"
+					},
+					{
+						"key": "JWT",
+						"value": "{{STUDENT_JWT}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "/admins/contact",
+					"path": [
+						"admins",
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticated - Get Super Admin Contacts",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{FACULTY_JWT}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "JWT",
+						"value": "{{ADMIN_JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "/super/admins/contact",
+					"path": [
+						"super",
+						"admins",
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticated - Get All Students in a class",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{FACULTY_JWT}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "JWT",
+						"value": "{{ADMIN_JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "/classes/10A/students",
+					"path": [
+						"classes",
+						"10A",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticated - GetStaff By Dept",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{FACULTY_JWT}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "JWT",
+						"value": "{{ADMIN_JWT}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "/staff/department/library",
+					"path": [
+						"staff",
+						"department",
+						"library"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authenticated - Mark fees as paid",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "JWT",
+						"value": "{{FACULTY_JWT}}",
+						"type": "text"
+					},
+					{
+						"key": "JWT",
+						"value": "{{ADMIN_JWT}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"feeId\":4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "/fees/pay",
+					"path": [
+						"fees",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.request.url.protocol=\"http\"\r",
+					"pm.request.url.host=\"localhost\"\r",
+					"pm.request.url.port=\"8181\""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ADMIN_JWT",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "STUDENT_JWT",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "FACULTY_JWT",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
