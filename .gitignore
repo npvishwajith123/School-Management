@@ -1,0 +1,27 @@
+# Maven or Gradle build directories
+/target/
+/build/
+
+# Logs
+*.log
+/logs/
+
+# Dependency directories
+/.mvn/
+/.gradle/
+
+# IDE-specific files
+.idea/
+/*.iml
+*.class
+*.project
+*.classpath
+
+# OS-specific files
+.DS_Store
+
+# Temporary files
+*.swp
+*~
+
+
